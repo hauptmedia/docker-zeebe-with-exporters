@@ -7,7 +7,7 @@ ARG ZEEBE_KAFKA_EXPORTER_VERSION=3.1.1
 RUN apk add unzip wget curl
 RUN curl -L https://github.com/camunda-community-hub/zeebe-kafka-exporter/releases/download/${ZEEBE_KAFKA_EXPORTER_VERSION}/zeebe-kafka-exporter-${ZEEBE_KAFKA_EXPORTER_VERSION}.zip -o /tmp/zeebe-kafka-exporter.zip && \
     unzip /tmp/zeebe-kafka-exporter.zip -d /tmp && \
-    mv /tmp/target/nexus-staging/deferred/io/zeebe/zeebe-kafka-exporter/3.1.1/zeebe-kafka-exporter-3.1.1-jar-with-dependencies.jar /opt/zeebe-kafka-exporter.jar
+    mv /tmp/target/nexus-staging/deferred/io/zeebe/zeebe-kafka-exporter/${ZEEBE_KAFKA_EXPORTER_VERSION}/zeebe-kafka-exporter-${ZEEBE_KAFKA_EXPORTER_VERSION}-jar-with-dependencies.jar /opt/zeebe-kafka-exporter.jar
 
 FROM camunda/zeebe:${ZEEBE_VERSION}
 
