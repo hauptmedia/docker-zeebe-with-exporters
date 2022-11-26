@@ -17,6 +17,8 @@ for the available configuration options.
 
 ## Using the Kafka Exporter
 
+For a further documentation please look at the [Zeebe Kafka Exporter Project](https://github.com/camunda-community-hub/zeebe-kafka-exporter).
+
 ### Example
 
 This will start a single node Zeebe and a single node Kafka instance and runs
@@ -58,6 +60,8 @@ zeebe:
 ```
 
 ## Using the Hazelcast Exporter
+
+For a further documentation please look at the [Zeebe Hazelcast Exporter Project](https://github.com/camunda-community-hub/zeebe-hazelcast-exporter).
 
 ### Example
 

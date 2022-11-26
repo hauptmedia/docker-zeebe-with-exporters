@@ -4,3 +4,27 @@ zeebe:
       hazelcast:
         className: io.zeebe.hazelcast.exporter.HazelcastExporter
         jarPath: /usr/local/zeebe/lib/zeebe-hazelcast-exporter.jar
+        args:
+          # Hazelcast port
+          port = 5701
+          
+          # Hazelcast cluster name
+          clusterName = "dev"
+          
+          # comma separated list of io.zeebe.protocol.record.ValueType to export or empty to export all types 
+          enabledValueTypes = ""
+          
+          # comma separated list of io.zeebe.protocol.record.RecordType to export or empty to export all types
+          enabledRecordTypes = ""
+          
+          # Hazelcast ringbuffer's name
+          name = "zeebe"
+          
+          # Hazelcast ringbuffer's capacity
+          capacity = 10000
+          
+          # Hazelcast ringbuffer's time-to-live in seconds. Don't remove the records until reaching the capacity by setting it to 0.  
+          timeToLiveInSeconds = 0
+          
+          # record serialization format: [protobuf|json]
+          format = "protobuf"
