@@ -37,7 +37,7 @@ services:
     image: node:16
     depends_on:
       - kafka
-    command: [ "npx", "@hauptmedia/zbcat@1.0.2", "--kafka-brokers", "kafka:9093" ]
+    command: [ "npx", "@hauptmedia/zbcat@1.0.3", "--kafka-brokers", "kafka:9093" ]
 
 volumes:
   zeebe:
