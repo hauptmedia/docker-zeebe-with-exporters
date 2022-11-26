@@ -9,10 +9,18 @@ services:
     environment: # https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/environment-variables/
       ZEEBE_LOG_LEVEL: debug
       SPRING_CONFIG_ADDITIONAL_LOCATION: /usr/local/zeebe/config/hazelcast-exporter.yml
-#      ZEEBE_HAZELCAST_FORMAT: json
+      ZEEBE_HAZELCAST_FORMAT: json
     restart: always
     volumes:
       - zeebe:/usr/local/zeebe/data
+
+  zbcat:
+    restart: always
+    image: node:16
+    depends_on:
+      - zeebe
+    command: [ "npx", "@hauptmedia/zbcat@1.1.0", "--hazelcast", "--hazelcast-cluster-members", "zeebe:5701" ]
+
 
 volumes:
   zeebe:
