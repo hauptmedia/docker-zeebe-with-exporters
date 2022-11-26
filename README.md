@@ -5,7 +5,7 @@ Zeebe Docker Image with integrated Exporters
 
 ## Using this Docker Image
 
-This Docker Image is being published at [Docker Hub](https://hub.docker.com/repository/docker/hauptmedia/zeebe-with-exporters).
+This Docker Image is published at [Docker Hub](https://hub.docker.com/repository/docker/hauptmedia/zeebe-with-exporters).
 
 You can simply run the image `hauptmedia/zeebe-with-exporters:latest` to use it.
 
@@ -15,9 +15,9 @@ This image is based on the official `camunda/zeebe` Docker Image and just adds e
 [Zeebe Documentation](https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/environment-variables/)
 for the available configuration options.
 
-## Using the Kafka Exporter
+## Kafka Exporter
 
-For a further documentation please look at the [Zeebe Kafka Exporter Project](https://github.com/camunda-community-hub/zeebe-kafka-exporter).
+For more documentation please look at the [Zeebe Kafka Exporter Project](https://github.com/camunda-community-hub/zeebe-kafka-exporter).
 
 ### Example
 
@@ -59,9 +59,9 @@ zeebe:
 
 ```
 
-## Using the Hazelcast Exporter
+## Hazelcast Exporter
 
-For a further documentation please look at the [Zeebe Hazelcast Exporter Project](https://github.com/camunda-community-hub/zeebe-hazelcast-exporter).
+For more documentation please look at the [Zeebe Hazelcast Exporter Project](https://github.com/camunda-community-hub/zeebe-hazelcast-exporter).
 
 ### Example
 
