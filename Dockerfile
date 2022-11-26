@@ -17,5 +17,8 @@ RUN curl -L https://github.com/camunda-community-hub/zeebe-hazelcast-exporter/re
 
 FROM camunda/zeebe:${ZEEBE_VERSION}
 
-ADD kafka/kafka-exporter.yml /usr/local/zeebe/config/kafka-exporter.yml
+ADD kafka/kafka-exporter.yml \
+hazelcast/hazelcast-exporter.yml \
+/usr/local/zeebe/config/
+
 COPY --from=unzipper /opt/*.jar /usr/local/zeebe/lib/

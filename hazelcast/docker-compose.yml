@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  zeebe: # https://docs.camunda.io/docs/self-managed/platform-deployment/docker/#zeebe
+    build: ..
+    ports:
+      - "26500:26500"
+      - "5701:5701"
+    environment: # https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/environment-variables/
+      ZEEBE_LOG_LEVEL: debug
+      SPRING_CONFIG_ADDITIONAL_LOCATION: /usr/local/zeebe/config/hazelcast-exporter.yml
+    restart: always
+    volumes:
+      - zeebe:/usr/local/zeebe/data
+
+volumes:
+  zeebe:
