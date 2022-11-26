@@ -1,3 +1,8 @@
+Zeebe Docker Image with integrated Exporters
+============================================
+![Compatible with: Camunda Platform 8](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%208-0072Ce)
+
+
 ## Using this Docker Image
 
 This Docker Image is being published at [Docker Hub](https://hub.docker.com/repository/docker/hauptmedia/zeebe-with-exporters).
@@ -32,7 +37,7 @@ docker compose -f kafka/docker-compose.yml up
 
 | Enviroment Variable                                 | Setting                                    | Description                              |
 |-----------------------------------------------------|--------------------------------------------|------------------------------------------|
-| SPRING_CONFIG_ADDITIONAL_LOCATION                   | /usr/local/zeebe/config/kafka-exporter.yml | The kafka-exporter yml must be activates |
+| SPRING_CONFIG_ADDITIONAL_LOCATION                   | /usr/local/zeebe/config/kafka-exporter.yml | The kafka-exporter.yml must be activated |
 | ZEEBE_BROKER_EXPORTERS_KAFKA_ARGS_PRODUCER_SERVERS  | kafka:9092                                 | A list of Kafka Brokers must be provided |
 
 You can override all settings from `kafka-exporter.yml` using environment variables. 
