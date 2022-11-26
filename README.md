@@ -9,7 +9,7 @@ This Docker Image is being published at [Docker Hub](https://hub.docker.com/repo
 
 You can simply run the image `hauptmedia/zeebe-with-exporters:latest` to use it.
 
-### Base Environment Variables
+### Environment Variables
 
 This image is based on the official `camunda/zeebe` Docker Image and just adds exporters to it, so please have a look at the
 [Zeebe Documentation](https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/environment-variables/)
@@ -33,7 +33,7 @@ docker compose -f kafka/docker-compose.yml up
 | 26500  | Zeebe gRPC   |
 | 9092   | Kafka Broker |
 
-### Required Environment Variables
+### Environment Variables
 
 | Enviroment Variable                                 | Setting                                    | Description                              |
 |-----------------------------------------------------|--------------------------------------------|------------------------------------------|
@@ -56,3 +56,37 @@ zeebe:
             servers: ""
 
 ```
+
+## Using the Hazelcast Exporter
+
+### Example
+
+This will start a single node Zeebe instance with an integrated single node Hazelcast Cluster instance.
+
+```shell
+docker compose -f hazelcast/docker-compose.yml up
+```
+
+### Exposed Services
+
+| Port   | Service    |
+|--------|------------|
+| 26500  | Zeebe gRPC |
+| 5701   | Hazelcast  |
+
+### Environment Variables
+
+| Enviroment Variable                        | Default Setting                                | Description                                                                                               |
+|--------------------------------------------|------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| SPRING_CONFIG_ADDITIONAL_LOCATION          | /usr/local/zeebe/config/hazelcast-exporter.yml | The hazelcast-exporter.yml must be activated                                                              |
+| ZEEBE_HAZELCAST_PORT                       | 5701                                           | Port for Hazelcast                                                                                        |
+| ZEEBE_HAZELCAST_NAME                       | zeebe                                          | Name of the ring buffer                                                                                   |
+| ZEEBE_HAZELCAST_CAPACITY                   | -1                                             | Capacity of the ring buffer                                                                               |
+| ZEEBE_HAZELCAST_TIME_TO_LIVE_IN_SECONDS    | 0                                              | TTL for the messages in the ring buffer                                                                   |
+| ZEEBE_HAZELCAST_FORMAT                     | protobuf                                       | Can be json or protobuf                                                                                   |
+| ZEEBE_HAZELCAST_ENABLED_VALUE_TYPES        |                                                | Filter list for value types                                                                               |
+| ZEEBE_HAZELCAST_ENABLED_RECORD_TYPES       |                                                | Filter list for record types                                                                              |
+| ZEEBE_HAZELCAST_REMOTE_ADDRESS             |                                                | If specified this external Hazelcast cluster will be used, otherwise an internal instance will be created |
+| ZEEBE_HAZELCAST_CLUSTER_NAME               | dev                                            | Name of Hazelcast cluster                                                                                 |
+| ZEEBE_HAZELCAST_REMOTE_CONNECTION_TIMEOUT  | PT30S                                          | Connection timeout                                                                                        |
+
