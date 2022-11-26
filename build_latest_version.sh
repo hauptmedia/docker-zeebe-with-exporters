@@ -2,6 +2,7 @@
 
 DOCKER_NAME=hauptmedia/zeebe-with-exporters
 
+# this needs the github cli from https://cli.github.com/
 ZEBEE_VERSION=$(gh release list --exclude-drafts --limit 1 --repo camunda/zeebe | cut -f1)
 ZEBEE_KAFKA_EXPORTER_VERSION=$(gh release list --exclude-drafts --limit 1 --repo camunda-community-hub/zeebe-kafka-exporter | cut -f1)
 
