@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  zeebe: # https://docs.camunda.io/docs/self-managed/platform-deployment/docker/#zeebe
+    build: .
+    ports:
+      - "26500:26500"
+    environment: # https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/environment-variables/
+      ZEEBE_LOG_LEVEL: debug
+      SPRING_CONFIG_ADDITIONAL_LOCATION: /usr/local/zeebe/config/exporter.yml
+      ZEEBE_BROKER_EXPORTERS_KAFKA_ARGS_PRODUCER_SERVERS: "kafka:9092"
+    restart: always
+    volumes:
+      - zeebe:/usr/local/zeebe/data
+
+  # https://hub.docker.com/r/bitnami/kafka
+  kafka:
+    image: 'bitnami/kafka:latest'
+    ports:
+      - '9092:9092'
+      - '9093:9093'
+    environment:
+      KAFKA_ENABLE_KRAFT: yes
+      KAFKA_CFG_BROKER_ID: 1
+      KAFKA_CFG_PROCESS_ROLES: broker,controller
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CFG_LISTENERS: CLIENT://:9092,EXTERNAL://:9093,CONTROLLER://:9094
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CFG_ADVERTISED_LISTENERS: CLIENT://kafka:9092,EXTERNAL://localhost:9093
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: CLIENT
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@127.0.0.1:9094
+      ALLOW_PLAINTEXT_LISTENER: yes
+    volumes:
+      - kafka:/bitnami/kafka
+
+  zbcat:
+    restart: always
+    image: node:16
+    depends_on:
+      - kafka
+    command: [ "npx", "@hauptmedia/zbcat", "--kafka-brokers", "kafka:9092" ]
+
+volumes:
+  zeebe:
+  kafka:
