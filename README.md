@@ -65,7 +65,8 @@ For more documentation please look at the [Zeebe Hazelcast Exporter Project](htt
 
 ### Example
 
-This will start a single node Zeebe instance with an integrated single node Hazelcast Cluster instance.
+This will start a single node Zeebe instance with an integrated single node Hazelcast Cluster instance and runs
+[zbcat](https://github.com/hauptmedia/zbcat) to display the Zeebe events in the console.
 
 ```shell
 docker compose -f hazelcast/docker-compose.yml up
