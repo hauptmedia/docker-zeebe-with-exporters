@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-DOCKER_NAME=hauptmedia/zeebe
+DOCKER_NAME=hauptmedia/zeebe-with-exporters
 
 ZEBEE_VERSION=$(gh release list --exclude-drafts --limit 1 --repo camunda/zeebe | cut -f1)
 ZEBEE_KAFKA_EXPORTER_VERSION=$(gh release list --exclude-drafts --limit 1 --repo camunda-community-hub/zeebe-kafka-exporter | cut -f1)
@@ -14,3 +14,8 @@ docker build -t ${DOCKER_NAME}:${ZEBEE_VERSION} \
 .
 
 docker tag ${DOCKER_NAME}:${ZEBEE_VERSION} ${DOCKER_NAME}:latest
+
+if [ "$1" = "--push" ]; then
+  docker push ${DOCKER_NAME}:${ZEBEE_VERSION}
+  docker push ${DOCKER_NAME}:latest
+fi
