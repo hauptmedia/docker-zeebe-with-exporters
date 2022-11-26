@@ -11,5 +11,5 @@ RUN curl -L https://github.com/camunda-community-hub/zeebe-kafka-exporter/releas
 
 FROM camunda/zeebe:${ZEEBE_VERSION}
 
-ADD exporter.yml /usr/local/zeebe/config/exporter.yml
+ADD kafka/kafka-exporter.yml /usr/local/zeebe/config/kafka-exporter.yml
 COPY --from=unzipper /opt/zeebe-kafka-exporter.jar /usr/local/zeebe/lib/
