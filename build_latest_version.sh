@@ -7,7 +7,7 @@ DOCKER_NAME=hauptmedia/zeebe-with-exporters
 if [ "$1" = "--snapshot" ]; then
   ZEBEE_VERSION="SNAPSHOT"
 else
-  ZEBEE_VERSION=$(gh release list --exclude-drafts --limit 1 --repo camunda/zeebe | cut -f3)
+  ZEBEE_VERSION=$(gh release list --limit 10 --exclude-drafts --repo camunda/zeebe | cut -f3 | grep -v alpha | grep -v beta | sort | tail -1)
 fi
 
 ZEBEE_KAFKA_EXPORTER_VERSION=$(gh release list --exclude-drafts --limit 1 --repo camunda-community-hub/zeebe-kafka-exporter | cut -f3)
